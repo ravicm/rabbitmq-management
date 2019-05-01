@@ -72,8 +72,11 @@ node_data(Node, ReqData) ->
     Nodes = proplists:get_value(nodes, S),
     Running = proplists:get_value(running_nodes, S),
     Type = find_type(Node, Nodes),
+    IsRunning = lists:member(Node, Running),
+    IsMnevisLeader = Node =:= proplists:get_value(mnevis_leader, S),
     rabbit_mgmt_db:augment_nodes(
-      [[{name, Node}, {running, lists:member(Node, Running)}, {type, Type}]],
+      [[{name, Node}, {type, Type},
+        {is_mnevis_leader, IsMnevisLeader}, {running, IsRunning}]],
       rabbit_mgmt_util:range_ceil(ReqData)).
 
 find_type(Node, [{Type, Nodes} | Rest]) ->

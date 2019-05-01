@@ -182,10 +182,7 @@
          <abbr title="Broker definitions are held in RAM. Messages will still be written to disc if necessary.">RAM</abbr>
        <% } %>
        <%= fmt_plugins_small(node) %>
-        <abbr title="Memory calculation strategy"><%= fmt_string(node.mem_calculation_strategy) %></abbr>
-       <% if (node.is_leader) { %>
-         <abbr title="Node is mnevis leader">leader</abbr>
-       <% } %>
+         <abbr title="Memory calculation strategy"><%= fmt_string(node.mem_calculation_strategy) %></abbr>
      </td>
   <% } %>
   <% if(user_administrator && show_column('overview', 'reset_stats')) { %>
